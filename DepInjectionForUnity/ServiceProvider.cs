@@ -70,13 +70,24 @@ public class ServiceProvider : IServiceProvider
     {
         if (_disposed) return;
 
-        // Dispose of all singleton instances that implement IDisposable
-        foreach (var instance in _singletons.Values)
+        foreach (var singleton in _singletons.Values)
         {
-            (instance as IDisposable)?.Dispose();
+            // Attempt to dispose of the service instance and catch any exceptions.
+            if (singleton is IDisposable disposable)
+            {
+                try
+                {
+                    disposable.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    // Log the exception to the console or to your preferred logging provider.
+                    Console.WriteLine($"Error disposing service {singleton.GetType().Name}: {ex.Message}");
+                }
+            }
         }
-        _singletons.Clear();
 
+        _singletons.Clear();
         _disposed = true;
     }
 }

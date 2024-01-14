@@ -19,13 +19,23 @@ public class ServiceScope : IServiceScope
     {
         if (_disposed) return;
 
-        // Dispose of all scoped instances that implement IDisposable
-        foreach (var instance in _scopedInstances.Values)
+        foreach (var scopedInstance in _scopedInstances.Values)
         {
-            (instance as IDisposable)?.Dispose();
+            // Attempt to dispose of the service instance and catch any exceptions.
+            if (scopedInstance is IDisposable disposable)
+            {
+                try
+                {
+                    disposable.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    //TODO: Log the exception to the console or to your preferred logging provider.
+                    Console.WriteLine($"Error disposing scoped service {scopedInstance.GetType().Name}: {ex.Message}");
+                }
+            }
         }
-        _scopedInstances.Clear();
 
-        _disposed = true;
+        _scopedInstances.Clear();
     }
 }
