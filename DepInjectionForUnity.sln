@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepInjectionForUnity", "Dep
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{540ECCC2-478B-410D-81F3-8D56C27A4329}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleConsoleApp", "SampleConsoleApp\SampleConsoleApp.csproj", "{A30EC8FF-74C6-4B46-93EB-01A4C7E7EBEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{540ECCC2-478B-410D-81F3-8D56C27A4329}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{540ECCC2-478B-410D-81F3-8D56C27A4329}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{540ECCC2-478B-410D-81F3-8D56C27A4329}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A30EC8FF-74C6-4B46-93EB-01A4C7E7EBEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A30EC8FF-74C6-4B46-93EB-01A4C7E7EBEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A30EC8FF-74C6-4B46-93EB-01A4C7E7EBEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A30EC8FF-74C6-4B46-93EB-01A4C7E7EBEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
