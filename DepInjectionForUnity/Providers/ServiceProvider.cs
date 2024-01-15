@@ -83,10 +83,51 @@ public class ServiceProvider : IServiceProvider
     /// <returns>An instance of the implementation type.</returns>
     private object CreateInstance(Type implementationType)
     {
-        // Logic here to create an instance of the service.
-        var constructorInfo = implementationType.GetConstructors().First();
-        var parameters = constructorInfo.GetParameters().Select(p => GetService(p.ParameterType)).ToArray();
-        return Activator.CreateInstance(implementationType, parameters);
+        var constructors = implementationType.GetConstructors();
+        if (constructors.Length == 0)
+        {
+            throw new InvalidOperationException($"Type {implementationType.Name} does not have any public constructors.");
+        }
+
+        // Determine which constructors have parameters that can be resolved.
+        var constructorCandidates = constructors
+            .Select(ctor => new
+            {
+                Constructor = ctor,
+                Parameters = ctor.GetParameters(),
+                Resolvable = ctor.GetParameters().All(p => p.IsOptional || CanResolve(p.ParameterType))
+            })
+            .Where(ctor => ctor.Resolvable).ToList();
+
+        if (constructorCandidates.Count == 0)
+        {
+            throw new InvalidOperationException($"No suitable constructor found for type {implementationType.Name}.");
+        }
+        
+        // Find the constructor with the most parameters that the DI container can satisfy.
+        var maxParameters = constructorCandidates.Max(ctor => ctor.Parameters.Length);
+        var eligibleConstructors = constructorCandidates
+            .Where(ctor => ctor.Parameters.Length == maxParameters).ToList();
+        
+        if (eligibleConstructors.Count > 1)
+        {
+            // If there is more than one constructor with the same number of max parameters, throw.
+            throw new InvalidOperationException($"Multiple constructors with {maxParameters} parameters found for type '{implementationType.Name}' and the DI container cannot determine which one to use. Please provide an explicit constructor.");
+        }
+        
+        var selectedConstructor = eligibleConstructors.Single();
+
+        var arguments = selectedConstructor.Parameters
+            .Select(p => p.IsOptional ? Type.Missing : GetService(p.ParameterType))
+            .ToArray();
+        
+        return selectedConstructor.Constructor.Invoke(arguments);
+    }
+    
+    private bool CanResolve(Type serviceType)
+    {
+        // Assuming _services is a List<ServiceDescriptor> and it contains all registered services.
+        return _services.Any(sd => sd.ServiceType == serviceType) || serviceType.IsValueType || serviceType == typeof(string);
     }
 
     /// <summary>

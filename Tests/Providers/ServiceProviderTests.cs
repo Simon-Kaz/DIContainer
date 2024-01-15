@@ -120,5 +120,65 @@ namespace Tests.Providers
                 Assert.IsInstanceOf<BazService>(scopedService);
             }
         }
+        
+        [Test]
+        public void ServiceProvider_SelectsConstructorWithMostResolvableParameters()
+        {
+            var services = new ServiceCollection();
+            services.RegisterSingleton<IFooService, FooService>();
+            services.RegisterSingleton<IBarService, BarService>();
+            services.RegisterTransient<ServiceWithMultipleConstructors, ServiceWithMultipleConstructors>();
+            var serviceProvider = services.BuildServiceProvider();
+
+            var service = serviceProvider.GetService<ServiceWithMultipleConstructors>();
+
+            Assert.NotNull(service.FooService);
+            Assert.NotNull(service.BarService);
+            Assert.IsInstanceOf<FooService>(service.FooService);
+            Assert.IsInstanceOf<BarService>(service.BarService);
+        }
+        
+        [Test]
+        public void ServiceProvider_ThrowsWhenNoConstructorIsResolvable()
+        {
+            var services = new ServiceCollection();
+            services.RegisterTransient<ServiceWithUnresolvableConstructor, ServiceWithUnresolvableConstructor>();
+            var serviceProvider = services.BuildServiceProvider();
+
+            Assert.Throws<InvalidOperationException>(() =>
+                serviceProvider.GetService<ServiceWithUnresolvableConstructor>());
+        }
+        
+        [Test]
+        public void ServiceProvider_ResolvesOptionalParametersCorrectly()
+        {
+            var services = new ServiceCollection();
+            services.RegisterSingleton<IFooService, FooService>();
+            services.RegisterTransient<ServiceWithMixedConstructors, ServiceWithMixedConstructors>();
+            var serviceProvider = services.BuildServiceProvider();
+
+            var service = serviceProvider.GetService<ServiceWithMixedConstructors>();
+
+            Assert.NotNull(service.FooService);
+            Assert.IsNull(service.OptionalService);
+            Assert.IsInstanceOf<FooService>(service.FooService);
+        }
+        
+        [Test]
+        public void ServiceProvider_ThrowsWhenConstructorsHaveSameParameterCountButDifferentTypes()
+        {
+            var services = new ServiceCollection();
+            services.RegisterSingleton<IFooService, FooService>();
+            services.RegisterSingleton<IBarService, BarService>();
+            services.RegisterSingleton<IOptionalService, OptionalService>();
+            services.RegisterTransient<ServiceWithCompetingConstructors, ServiceWithCompetingConstructors>();
+            var serviceProvider = services.BuildServiceProvider();
+
+            // The DI system has two constructors to choose from,
+            // each with one service and one optional parameter,
+            // and should not be able to make a decision without further configuration.
+            Assert.Throws<InvalidOperationException>(() =>
+                serviceProvider.GetService<ServiceWithCompetingConstructors>());
+        }
     }
 }
