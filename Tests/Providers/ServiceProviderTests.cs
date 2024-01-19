@@ -1,5 +1,5 @@
-using DIContainer.Scopes;
-using DIContainer.Services;
+using SimpleDI.Scopes;
+using SimpleDI.Services;
 using Tests.Common;
 
 namespace Tests.Providers

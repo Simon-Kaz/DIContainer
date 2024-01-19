@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DIContainer.Scopes;
-using DIContainer.Services;
+using SimpleDI.Scopes;
+using SimpleDI.Services;
 
-namespace DIContainer.Providers
+namespace SimpleDI.Providers
 {
     public class ScopedServiceProvider : IServiceProvider
     {

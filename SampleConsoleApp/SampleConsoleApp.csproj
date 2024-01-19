@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DIContainer\DIContainer.csproj" />
+      <ProjectReference Include="..\SimpleDI\SimpleDI.csproj" />
     </ItemGroup>
 
 </Project>

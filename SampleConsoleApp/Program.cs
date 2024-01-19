@@ -1,7 +1,7 @@
-﻿using DIContainer.Services;
+﻿using SimpleDI.Services;
 using SampleConsoleApp.Interfaces;
 using SampleConsoleApp.Services;
-using IServiceProvider = DIContainer.Providers.IServiceProvider;
+using IServiceProvider = SimpleDI.Providers.IServiceProvider;
 
 // Set up DI system
 IServiceCollection services = new ServiceCollection();

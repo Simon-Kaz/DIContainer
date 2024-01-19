@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DIContainer.Providers;
-using IServiceProvider = DIContainer.Providers.IServiceProvider;
-using Providers_IServiceProvider = DIContainer.Providers.IServiceProvider;
+using SimpleDI.Providers;
+using IServiceProvider = SimpleDI.Providers.IServiceProvider;
+using Providers_IServiceProvider = SimpleDI.Providers.IServiceProvider;
+using SimpleDI_Providers_IServiceProvider = SimpleDI.Providers.IServiceProvider;
 
-namespace DIContainer.Services
+namespace SimpleDI.Services
 {
     /// <summary>
     /// Manages the collection of service descriptors and builds the service provider.
@@ -48,7 +49,7 @@ namespace DIContainer.Services
         /// Builds the ServiceProvider containing services registered in the collection.
         /// </summary>
         /// <returns>An IServiceProvider instance ready to resolve services.</returns>
-        public Providers_IServiceProvider BuildServiceProvider()
+        public SimpleDI_Providers_IServiceProvider BuildServiceProvider()
         {
             ValidateServiceCollection();
             return new ServiceProvider(_services);

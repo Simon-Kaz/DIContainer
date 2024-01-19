@@ -1,7 +1,8 @@
-using IServiceProvider = DIContainer.Providers.IServiceProvider;
-using Providers_IServiceProvider = DIContainer.Providers.IServiceProvider;
+using IServiceProvider = SimpleDI.Providers.IServiceProvider;
+using Providers_IServiceProvider = SimpleDI.Providers.IServiceProvider;
+using SimpleDI_Providers_IServiceProvider = SimpleDI.Providers.IServiceProvider;
 
-namespace DIContainer.Services
+namespace SimpleDI.Services
 {
     /// <summary>
     /// Defines methods for registering services in the dependency injection container
@@ -12,6 +13,6 @@ namespace DIContainer.Services
         void RegisterSingleton<TService, TImplementation>() where TImplementation : TService;
         void RegisterTransient<TService, TImplementation>() where TImplementation : TService;
         void RegisterScoped<TService, TImplementation>() where TImplementation : TService;
-        Providers_IServiceProvider BuildServiceProvider();
+        SimpleDI_Providers_IServiceProvider BuildServiceProvider();
     }
 }

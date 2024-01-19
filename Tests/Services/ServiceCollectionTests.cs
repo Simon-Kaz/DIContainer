@@ -1,4 +1,4 @@
-using DIContainer.Services;
+using SimpleDI.Services;
 using Tests.Common;
 
 namespace Tests.Services;

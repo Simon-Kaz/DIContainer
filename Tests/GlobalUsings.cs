@@ -1,2 +1,2 @@
 global using NUnit.Framework;
-global using IServiceProvider = DIContainer.Providers.IServiceProvider;
+global using IServiceProvider = SimpleDI.Providers.IServiceProvider;

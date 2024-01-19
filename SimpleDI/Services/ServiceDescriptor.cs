@@ -1,6 +1,6 @@
 using System;
 
-namespace DIContainer.Services
+namespace SimpleDI.Services
 {
     /// <summary>
     /// Defines the lifetime options for services in the dependency injection container.

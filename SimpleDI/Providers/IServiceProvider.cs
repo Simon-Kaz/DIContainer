@@ -1,7 +1,7 @@
 using System;
-using DIContainer.Scopes;
+using SimpleDI.Scopes;
 
-namespace DIContainer.Providers
+namespace SimpleDI.Providers
 {
     /// <summary>
     /// Defines a mechanism for retrieving a service object by type from the container.

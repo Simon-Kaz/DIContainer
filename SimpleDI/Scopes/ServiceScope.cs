@@ -1,9 +1,10 @@
 using System;
-using DIContainer.Providers;
-using IServiceProvider = DIContainer.Providers.IServiceProvider;
-using Providers_IServiceProvider = DIContainer.Providers.IServiceProvider;
+using SimpleDI.Providers;
+using IServiceProvider = SimpleDI.Providers.IServiceProvider;
+using Providers_IServiceProvider = SimpleDI.Providers.IServiceProvider;
+using SimpleDI_Providers_IServiceProvider = SimpleDI.Providers.IServiceProvider;
 
-namespace DIContainer.Scopes
+namespace SimpleDI.Scopes
 {
     /// <summary>
     /// Represents a scope for service resolution and disposal. Scoped services resolved
@@ -11,14 +12,14 @@ namespace DIContainer.Scopes
     /// </summary>
     public class ServiceScope : IServiceScope
     {
-        public Providers_IServiceProvider ServiceProvider { get; }
+        public SimpleDI_Providers_IServiceProvider ServiceProvider { get; }
         private bool _disposed;
 
         /// <summary>
         /// Initializes a new instance of the ServiceScope class.
         /// </summary>
         /// <param name="rootProvider">The root service provider used to create the scope.</param>
-        public ServiceScope(Providers_IServiceProvider rootProvider)
+        public ServiceScope(SimpleDI_Providers_IServiceProvider rootProvider)
         {
             ServiceProvider = rootProvider.CreateScopedServiceProvider();
             _disposed = false;
