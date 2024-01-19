@@ -1,6 +1,7 @@
 ﻿using SimpleDI.Services;
 using SampleConsoleApp.Interfaces;
 using SampleConsoleApp.Services;
+using SimpleDI.Providers;
 using IServiceProvider = SimpleDI.Providers.IServiceProvider;
 
 // Set up DI system
@@ -40,8 +41,16 @@ using (var scope2 = serviceProvider.CreateScope())
     scopedService3.PrintIdentifier(); // This time should be different from the previous scope's time
 }
 
+// Request singleton again
 var singletonService2 = serviceProvider.GetService<ISingletonService>();
 singletonService2.PrintIdentifier(); // This time should always be the same
+
+// Using the extension method to resolve a Lazy<ISomeService> instance.
+var lazyService = serviceProvider.GetLazyService<ITransientService>();
+// The service within the Lazy<T> container is only created when the `.Value` property is accessed.
+Console.WriteLine($"Was service initialized? {lazyService.IsValueCreated}");
+lazyService.Value.PrintTime();
+Console.WriteLine($"Was service initialized? {lazyService.IsValueCreated}");
 
 Console.WriteLine("Press any key to exit...");
 Console.ReadKey();
