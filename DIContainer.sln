@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepInjectionForUnity", "DepInjectionForUnity\DepInjectionForUnity.csproj", "{2422A3C5-F2F2-4382-BC5B-1E0EF4770B2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DIContainer", "DIContainer\DIContainer.csproj", "{2422A3C5-F2F2-4382-BC5B-1E0EF4770B2A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{540ECCC2-478B-410D-81F3-8D56C27A4329}"
 EndProject

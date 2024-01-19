@@ -1,7 +1,8 @@
 using System;
-using IServiceProvider = DepInjectionForUnity.Providers.IServiceProvider;
+using IServiceProvider = DIContainer.Providers.IServiceProvider;
+using Providers_IServiceProvider = DIContainer.Providers.IServiceProvider;
 
-namespace DepInjectionForUnity.Scopes
+namespace DIContainer.Scopes
 {
     /// <summary>
     /// Defines a mechanism to manage the scope of resolved services.
@@ -11,6 +12,6 @@ namespace DepInjectionForUnity.Scopes
         /// <summary>
         /// Defines a mechanism to manage the scope of resolved services.
         /// </summary>
-        IServiceProvider ServiceProvider { get; }
+        Providers_IServiceProvider ServiceProvider { get; }
     }
 }

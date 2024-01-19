@@ -1,5 +1,5 @@
-using DepInjectionForUnity.Scopes;
-using DepInjectionForUnity.Services;
+using DIContainer.Scopes;
+using DIContainer.Services;
 using Tests.Common;
 
 namespace Tests.Providers

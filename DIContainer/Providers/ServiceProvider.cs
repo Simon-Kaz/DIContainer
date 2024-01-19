@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DepInjectionForUnity.Scopes;
-using DepInjectionForUnity.Services;
+using DIContainer.Scopes;
+using DIContainer.Services;
 
-namespace DepInjectionForUnity.Providers
+namespace DIContainer.Providers
 {
     /// <summary>
     /// Default implementation of the IServiceProvider.

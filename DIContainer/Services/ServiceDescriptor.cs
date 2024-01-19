@@ -1,6 +1,6 @@
 using System;
 
-namespace DepInjectionForUnity.Services
+namespace DIContainer.Services
 {
     /// <summary>
     /// Defines the lifetime options for services in the dependency injection container.

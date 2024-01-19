@@ -1,8 +1,9 @@
 using System;
-using DepInjectionForUnity.Providers;
-using IServiceProvider = DepInjectionForUnity.Providers.IServiceProvider;
+using DIContainer.Providers;
+using IServiceProvider = DIContainer.Providers.IServiceProvider;
+using Providers_IServiceProvider = DIContainer.Providers.IServiceProvider;
 
-namespace DepInjectionForUnity.Scopes
+namespace DIContainer.Scopes
 {
     /// <summary>
     /// Represents a scope for service resolution and disposal. Scoped services resolved
@@ -10,14 +11,14 @@ namespace DepInjectionForUnity.Scopes
     /// </summary>
     public class ServiceScope : IServiceScope
     {
-        public IServiceProvider ServiceProvider { get; }
+        public Providers_IServiceProvider ServiceProvider { get; }
         private bool _disposed;
 
         /// <summary>
         /// Initializes a new instance of the ServiceScope class.
         /// </summary>
         /// <param name="rootProvider">The root service provider used to create the scope.</param>
-        public ServiceScope(IServiceProvider rootProvider)
+        public ServiceScope(Providers_IServiceProvider rootProvider)
         {
             ServiceProvider = rootProvider.CreateScopedServiceProvider();
             _disposed = false;

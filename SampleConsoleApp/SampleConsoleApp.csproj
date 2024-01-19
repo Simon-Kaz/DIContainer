@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DepInjectionForUnity\DepInjectionForUnity.csproj" />
+      <ProjectReference Include="..\DIContainer\DIContainer.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-using DepInjectionForUnity.Services;
+using DIContainer.Services;
 using Tests.Common;
 namespace Tests.Providers;
 

@@ -1,6 +1,7 @@
-using IServiceProvider = DepInjectionForUnity.Providers.IServiceProvider;
+using IServiceProvider = DIContainer.Providers.IServiceProvider;
+using Providers_IServiceProvider = DIContainer.Providers.IServiceProvider;
 
-namespace DepInjectionForUnity.Services
+namespace DIContainer.Services
 {
     /// <summary>
     /// Defines methods for registering services in the dependency injection container
@@ -11,6 +12,6 @@ namespace DepInjectionForUnity.Services
         void RegisterSingleton<TService, TImplementation>() where TImplementation : TService;
         void RegisterTransient<TService, TImplementation>() where TImplementation : TService;
         void RegisterScoped<TService, TImplementation>() where TImplementation : TService;
-        IServiceProvider BuildServiceProvider();
+        Providers_IServiceProvider BuildServiceProvider();
     }
 }

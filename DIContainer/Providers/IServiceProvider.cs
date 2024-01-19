@@ -1,7 +1,7 @@
 using System;
-using DepInjectionForUnity.Scopes;
+using DIContainer.Scopes;
 
-namespace DepInjectionForUnity.Providers
+namespace DIContainer.Providers
 {
     /// <summary>
     /// Defines a mechanism for retrieving a service object by type from the container.
